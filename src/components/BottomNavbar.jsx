@@ -36,4 +36,3 @@ const BottomNavBar = () => {
 };
 
 export default BottomNavBar;
-
