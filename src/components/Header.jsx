@@ -44,55 +44,6 @@ const Header = ({ isLoggedIn }) => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {!isLoggedIn && menuOpen && (
-        <div className="md:hidden bg-black px-4 pb-6 space-y-4">
-
-
-          {/* Mobile Menu */}
-{menuOpen && (
-  <div className="md:hidden bg-black px-4 pb-6 space-y-4">
-    
-    {/* Mobile Nav Links */}
-    <div className="space-y-2">
-      <Link 
-        to="/login" 
-        onClick={() => setMenuOpen(false)}
-        className="block w-full text-left px-4 py-2 border border-yellow-500 text-yellow-500 rounded hover:bg-yellow-500 hover:text-black"
-      >
-        Login
-      </Link>
-      <Link 
-        to="/signup" 
-        onClick={() => setMenuOpen(false)}
-        className="block w-full text-left px-4 py-2 bg-yellow-500 text-black rounded hover:bg-yellow-400"
-      >
-        Sign Up
-      </Link>
-    </div>
-
-    {/* Contact Info */}
-    <div className="text-sm text-gray-300 space-y-1 pt-4 border-t border-gray-700">
-      <div className="flex items-center space-x-2">
-        <Phone size={16} /> <span>+91 98765 43210</span>
-      </div>
-      <div className="flex items-center space-x-2">
-        <Mail size={16} /> <span>contact@timetofit.in</span>
-      </div>
-    </div>
-
-    {/* Social Media */}
-    <div className="flex space-x-4 pt-4 border-t border-gray-700 text-yellow-500">
-      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400">
-        <Facebook />
-      </a>
-      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400">
-        <Instagram />
-      </a>
-    </div>
-  </div>
-)}
-
           
           {/* Mobile Nav Links */}
 {/*           <div className="space-y-2">
