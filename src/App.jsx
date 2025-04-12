@@ -9,6 +9,11 @@ import Dashboard from './pages/Dashboard';
 import Header from './components/Header';
 import HeroSection from './pages/AdminLanding';
 import Footer from './components/Footer';
+import UserDashboard from './pages/userDashboard';
+import Training from './pages/Training'
+import WorkoutPage from './pages/WorkoutPage'
+import WorkoutVideos from './pages/WorkoutVideos'
+import Profile from './pages/Profile'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,6 +42,10 @@ function App() {
         <div className="w-full pt-16">
         <Routes>
           <Route path="/" element={<HeroSection />} />
+          <Route path="/training" element={<Training />} />
+          <Route path="/workout-page" element={<WorkoutPage />} />
+          <Route path="/workout-Videos" element={<WorkoutVideos />} />
+          <Route path="/profile" element={<Profile />} />
           <Route 
             path="/login" 
             element={
@@ -57,10 +66,14 @@ function App() {
             path="/dashboard" 
             element={
               isLoggedIn ? 
-                <Dashboard onLogout={handleLogout} /> : 
+                <UserDashboard onLogout={handleLogout} /> : 
                 <Navigate to="/login" />
             } 
           />
+           {/* <Route 
+    path="/user-dashboard" 
+    element={isLoggedIn ? <UserDashboard /> : <Navigate to="/login" />} 
+  /> */}
          
         </Routes>
         <Footer/>
@@ -71,3 +84,5 @@ function App() {
 }
 
 export default App;
+
+
