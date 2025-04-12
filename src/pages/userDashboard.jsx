@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Search, Bookmark, User, Lock } from "lucide-react";
-import BottomNavBar from "../components/BottomNavbar";
 import UserHeader from "../components/TopNavbar";
 
 const UserDashboard = () => {
@@ -150,8 +149,6 @@ const UserDashboard = () => {
             </div>
           </section>
         </main>
-
-        <BottomNavBar />
       </div>
     </>
   );

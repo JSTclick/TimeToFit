@@ -20,7 +20,7 @@ const Header = ({ isLoggedIn }) => {
 
         {/* Desktop Navigation */}
         {!isLoggedIn && (
-          <div className=" md:flex space-x-4">
+          <div className="hidden md:flex space-x-4">
             <Link 
               to="/login" 
               className="px-4 py-2 border border-yellow-500 text-yellow-500 rounded hover:bg-yellow-500 hover:text-black transition duration-300"

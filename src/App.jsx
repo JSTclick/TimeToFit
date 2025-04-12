@@ -14,6 +14,7 @@ import Training from './pages/Training'
 import WorkoutPage from './pages/WorkoutPage'
 import WorkoutVideos from './pages/WorkoutVideos'
 import Profile from './pages/Profile'
+import BottomNavBar from './components/BottomNavbar'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
