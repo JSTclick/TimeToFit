@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Search, Bookmark, User, Lock } from "lucide-react";
-import BottomNavBar from "../components/BottomNavBar";
+import BottomNavBar from "../components/BottomNavbar";
 import UserHeader from "../components/TopNavbar";
 
 const UserDashboard = () => {

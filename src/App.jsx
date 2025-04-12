@@ -37,49 +37,61 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-black text-white">
-        <Header isLoggedIn={isLoggedIn} />
-        <div className="w-full pt-16">
-        <Routes>
-          <Route path="/" element={<HeroSection />} />
-          <Route path="/training" element={<Training />} />
-          <Route path="/workout-page" element={<WorkoutPage />} />
-          <Route path="/workout-Videos" element={<WorkoutVideos />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route 
-            path="/login" 
-            element={
-              isLoggedIn ? 
-                <Navigate to="/dashboard" /> : 
-                <LoginPage onLogin={handleLogin} />
-            } 
-          />
-          <Route 
-            path="/signup" 
-            element={
-              isLoggedIn ? 
-                <Navigate to="/dashboard" /> : 
-                <SignupPage onSignup={handleLogin} />
-            } 
-          />
-          <Route 
-            path="/dashboard" 
-            element={
-              isLoggedIn ? 
-                <UserDashboard onLogout={handleLogout} /> : 
-                <Navigate to="/login" />
-            } 
-          />
-           {/* <Route 
-    path="/user-dashboard" 
-    element={isLoggedIn ? <UserDashboard /> : <Navigate to="/login" />} 
-  /> */}
-         
-        </Routes>
-        <Footer/>
-        </div>
-      </div>
-    </Router>
+  <div className="min-h-screen bg-black text-white">
+    <Header isLoggedIn={isLoggedIn} />
+    <div className="w-full pt-16">
+      <Routes>
+        <Route path="/" element={<HeroSection />} />
+        <Route 
+    path="/training" 
+    element={isLoggedIn ? <Training /> : <Navigate to="/login" />} 
+  />
+  <Route 
+    path="/workout-page" 
+    element={isLoggedIn ? <WorkoutPage /> : <Navigate to="/login" />} 
+  />
+  <Route 
+    path="/workout-Videos" 
+    element={isLoggedIn ? <WorkoutVideos /> : <Navigate to="/login" />} 
+  />
+  <Route 
+    path="/profile" 
+    element={isLoggedIn ? <Profile /> : <Navigate to="/login" />} 
+  />
+        <Route 
+          path="/login" 
+          element={
+            isLoggedIn ? 
+              <Navigate to="/dashboard" /> : 
+              <LoginPage onLogin={handleLogin} />
+          } 
+        />
+        <Route 
+          path="/signup" 
+          element={
+            isLoggedIn ? 
+              <Navigate to="/dashboard" /> : 
+              <SignupPage onSignup={handleLogin} />
+          } 
+        />
+        <Route 
+          path="/dashboard" 
+          element={
+            isLoggedIn ? 
+              <UserDashboard onLogout={handleLogout} /> : 
+              <Navigate to="/login" />
+          } 
+        />
+      </Routes>
+
+      {/* Show BottomNavBar only if logged in */}
+      {isLoggedIn && <BottomNavBar />}
+
+      <Footer />
+    </div>
+  </div>
+</Router>
+
   );
 }
 
