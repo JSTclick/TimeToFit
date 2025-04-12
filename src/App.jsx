@@ -43,6 +43,8 @@ function App() {
     <div className="w-full pt-16">
       <Routes>
         <Route path="/" element={<HeroSection />} />
+         {/* Show BottomNavBar only if logged in */}
+      {isLoggedIn && <TopNavBar />}
         <Route 
     path="/training" 
     element={isLoggedIn ? <Training /> : <Navigate to="/login" />} 
