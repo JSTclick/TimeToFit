@@ -44,9 +44,12 @@ const Header = ({ isLoggedIn }) => {
         </div>
       </div>
 
+      {/* Mobile Menu */}
+      {!isLoggedIn && menuOpen && (
+        <div className="md:hidden bg-black px-4 pb-6 space-y-4">
           
           {/* Mobile Nav Links */}
-{/*           <div className="space-y-2">
+          <div className="space-y-2">
             <Link 
               to="/login" 
               onClick={() => setMenuOpen(false)}
@@ -81,7 +84,7 @@ const Header = ({ isLoggedIn }) => {
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400">
               <Instagram />
             </a>
-          </div> */}
+          </div>
         </div>
       )}
     </header>
