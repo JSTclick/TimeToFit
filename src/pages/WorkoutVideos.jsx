@@ -111,6 +111,8 @@ const exercises = [
 ];
 
 export default function WorkoutPage() {
+
+  
   const [exerciseIndex, setExerciseIndex] = useState(0);
   const [videoIndex, setVideoIndex] = useState(0);
 
@@ -136,93 +138,95 @@ export default function WorkoutPage() {
 
   return (
     <div className="min-h-screen bg-black text-white px-2 py-4 md:px-6 lg:px-12">
-        <TopNavbar/>
-      <h1 className="text-2xl md:text-3xl font-bold text-yellow-400 text-center mb-6">
-        {currentExercise.name}
-      </h1>
+    <TopNavbar />
+    <h1 className="text-2xl md:text-3xl font-bold text-yellow-400 text-center mb-6">
+      {currentExercise.name}
+    </h1>
 
-      <div className="relative w-full ">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentVideo.title}
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -100, opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-4  rounded-lg p-4 md:p-6 shadow-xl"
-          >
-            <div className="relative w-full h-[200px] md:h-[400px] lg:h-[550px]">
-              <video
-                src={currentVideo.url}
-                controls
-                className="w-full h-full rounded-lg object-cover"
-              />
-              <button className="absolute top-2 right-2 bg-white/10 p-2 rounded-full">
-                <Bookmark className="text-white" />
-              </button>
-            </div>
-
-            <h2 className="text-lg md:text-xl font-semibold text-yellow-300">
-              {currentVideo.title}
-            </h2>
-            <p className="text-sm text-gray-300">{currentVideo.description}</p>
-
-            <div className="flex justify-between mt-4">
-              <button
-                onClick={handlePrevVideo}
-                disabled={videoIndex === 0}
-                className="p-2 bg-gray-800 hover:bg-gray-700 rounded-full disabled:opacity-30"
-              >
-                <ChevronLeft size={28} />
-              </button>
-              <button
-                onClick={handleNextVideo}
-                disabled={videoIndex === currentExercise.videos.length - 1}
-                className="p-2 bg-gray-800 hover:bg-gray-700 rounded-full disabled:opacity-30"
-              >
-                <ChevronRight size={28} />
-              </button>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* Next Exercise Button */}
-      <div className="text-center mt-8">
-        <motion.button
-          whileTap={{ scale: 0.95 }}
-          whileHover={{ scale: 1.05 }}
-          onClick={handleNextExercise}
-          className="bg-yellow-400 w-full text-black text-lg font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-yellow-500/50 transition-all"
+    <div className="relative w-full">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentVideo.title}
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: -100, opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="space-y-4 rounded-lg p-4 md:p-6 shadow-xl"
         >
-           Next Exercise
-        </motion.button>
-      </div>
+          <div className="relative w-full h-[200px] md:h-[400px] lg:h-[550px]">
+            <video
+              src={currentVideo.url}
+              controls
+              className="w-full h-full rounded-lg object-cover"
+            />
+            <button className="absolute top-2 right-2 bg-white/10 p-2 rounded-full">
+              <Bookmark className="text-white" />
+            </button>
+          </div>
 
-      {/* Related Workouts */}
-      <div className="mt-10">
-        <h3 className="text-xl font-semibold text-white mb-4">
-          🔄 Related Workouts
-        </h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {exercises.map((ex) =>
-            ex.videos.slice(0, 1, 2).map((vid, vIdx) => (
-              <div
-                key={vid.title + vIdx}
-                className="bg-gray-800 rounded-lg p-2 hover:scale-105 transition-transform duration-300"
-              >
-                <video
-                  src={vid.url}
-                  className="w-full h-25 md:h-48 lg:h-38 rounded-md object-cover"
-                />
-                <p className="text-sm text-yellow-200 mt-2 font-medium">
-                  {vid.title}
-                </p>
-              </div>
-            ))
-          )}
-        </div>
+          <h2 className="text-lg md:text-xl font-semibold text-yellow-300">
+            {currentVideo.title}
+          </h2>
+          <p className="text-sm text-gray-300">{currentVideo.description}</p>
+
+          <div className="flex justify-between mt-4">
+            <button
+              onClick={handlePrevVideo}
+              disabled={videoIndex === 0}
+              className="p-2 bg-gray-800 hover:bg-gray-700 rounded-full disabled:opacity-30"
+            >
+              <ChevronLeft size={28} />
+            </button>
+            <button
+              onClick={handleNextVideo}
+              disabled={videoIndex === currentExercise.videos.length - 1}
+              className="p-2 bg-gray-800 hover:bg-gray-700 rounded-full disabled:opacity-30"
+            >
+              <ChevronRight size={28} />
+            </button>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+
+    {/* Next Exercise Button */}
+    <div className="text-center mt-8">
+      <motion.button
+        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.05 }}
+        onClick={handleNextExercise}
+        className="bg-yellow-400 w-full text-black text-lg font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-yellow-500/50 transition-all"
+      >
+        Next Exercise
+      </motion.button>
+    </div>
+
+    {/* Related Workouts */}
+    <div className="mt-10">
+      <h3 className="text-xl font-semibold text-white mb-4">
+         Related Workouts
+      </h3>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {exercises.map((ex) =>
+          ex.videos.slice(0, 1).map((vid, vIdx) => (
+            <div
+              key={vid.title + vIdx}
+              className="bg-gray-800 rounded-lg p-2 hover:scale-105 transition-transform duration-300"
+            >
+              <video
+                src={vid.url}
+                className="w-full h-25 md:h-48 lg:h-38 rounded-md object-cover"
+                autoPlay
+                loop
+              />
+              <p className="text-sm text-yellow-200 mt-2 font-medium">
+                {vid.title}
+              </p>
+            </div>
+          ))
+        )}
       </div>
     </div>
-  );
+  </div>
+);
 }
