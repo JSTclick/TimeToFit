@@ -15,6 +15,7 @@ import WorkoutPage from './pages/WorkoutPage'
 import WorkoutVideos from './pages/WorkoutVideos'
 import Profile from './pages/Profile'
 import BottomNavBar from './components/BottomNavbar'
+import UserHeader from './components/TopNavbar'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -43,6 +44,8 @@ function App() {
     <div className="w-full pt-16">
       <Routes>
         <Route path="/" element={<HeroSection />} />
+         {/* Show BottomNavBar only if logged in */}
+      {isLoggedIn && <UserHeader />}
         <Route 
     path="/training" 
     element={isLoggedIn ? <Training /> : <Navigate to="/login" />} 
