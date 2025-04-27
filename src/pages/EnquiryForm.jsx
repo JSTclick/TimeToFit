@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 // Taking from .env file
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://195.35.56.110:5000/api';
 
 export default function EnquiryForm() {
   const [formData, setFormData] = useState({
