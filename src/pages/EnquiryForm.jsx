@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-// import emailjs from "emailjs-com"; // Uncomment after setting up
+import axios from "axios";
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export default function EnquiryForm() {
   const [formData, setFormData] = useState({
@@ -10,26 +12,26 @@ export default function EnquiryForm() {
   });
 
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setStatus("");
 
-    // Replace this block with actual EmailJS logic after setup
-    // emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", formData, "YOUR_PUBLIC_KEY")
-    //   .then(() => {
-    //     setStatus("Message sent successfully!");
-    //     setFormData({ name: "", phone: "", email: "", message: "" });
-    //   })
-    //   .catch(() => {
-    //     setStatus("Something went wrong. Please try again later.");
-    //   });
-
-    setStatus("Demo: Message sent successfully!");
-    setFormData({ name: "", phone: "", email: "", message: "" });
+    try {
+      const response = await axios.post(`${API_BASE_URL}/enquiries`, formData);
+      setStatus("Message sent successfully! Please check your email for confirmation.");
+      setFormData({ name: "", phone: "", email: "", message: "" });
+    } catch (error) {
+      setStatus(error.response?.data?.message || "Something went wrong. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -86,13 +88,20 @@ export default function EnquiryForm() {
 
           <button
             type="submit"
-            className="w-full bg-yellow-400 text-black font-bold py-3 rounded-lg hover:bg-yellow-300 transition-all shadow-md"
+            disabled={loading}
+            className={`w-full bg-yellow-400 text-black font-bold py-3 rounded-lg transition-all shadow-md ${
+              loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-yellow-300'
+            }`}
           >
-            Send Message
+            {loading ? 'Sending...' : 'Send Message'}
           </button>
 
           {status && (
-            <p className="text-center mt-4 text-sm text-green-400">{status}</p>
+            <p className={`text-center mt-4 text-sm ${
+              status.includes('successfully') ? 'text-green-400' : 'text-red-400'
+            }`}>
+              {status}
+            </p>
           )}
         </form>
       </div>
